@@ -15,25 +15,25 @@ const Hero = () => {
 
   const movies = useMovies(`movie/popular`);
 
-  const lenght = movies.length;
+  const length = movies.length;
   const timeout = useRef(null);
 
   useEffect(() => {
     try {
       const nextSlide = () => {
-        setCurrent(current === lenght - 1 ? 0 : current + 1);
+        setCurrent(current === length - 1 ? 0 : current + 1);
       };
       timeout.current = setTimeout(nextSlide, 10000);
     } catch (error) {
       console.log(error);
     }
 
-    return function () {
+    return () => {
       if (timeout.current) {
         clearTimeout(timeout.current);
       }
     };
-  }, [current, lenght]);
+  }, [current, length]);
 
   return (
     <HeroSection>

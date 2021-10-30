@@ -173,13 +173,6 @@ const PeopleDetails = ({ url }) => {
 
             <MainContainer>
               <DetailH3>Biography</DetailH3>
-              {textTrun === false ? (
-                <>
-                  <BioContent>{text_truncate(bioText, 700, "...")}</BioContent>
-                </>
-              ) : (
-                <BioContent>{bioText}</BioContent>
-              )}
               {bioText ? (
                 <ReadMoreBTN
                   onClick={() => {

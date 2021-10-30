@@ -50,7 +50,7 @@ const CustomSlider = ({ url }) => {
       <Swiper
         slidesPerView={width}
         spaceBetween={8}
-        slidesPerGroup={3}
+        slidesPerGroup={2}
         loop={false}
         loopFillGroupWithBlank={true}
         navigation={true}
