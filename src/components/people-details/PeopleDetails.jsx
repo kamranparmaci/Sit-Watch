@@ -4,7 +4,7 @@ import useDetails from "../../hooks/useDetails";
 import _ from "lodash";
 import { IMG_API } from "../../constant";
 import Medias from "../media/Medias";
-import { seo, text_truncate } from "../../utils";
+import { Meta, text_truncate } from "../../utils";
 import useWindowSize from "../../hooks/useWindowSize";
 import {
   GridContainer,
@@ -52,13 +52,6 @@ const PeopleDetails = ({ url }) => {
 
   const person = useDetails(`${url}${personId}`);
 
-  useEffect(() => {
-    seo({
-      title: person.name + " -_- Sit Watch",
-      metaDescription: "With some meta description",
-    });
-  });
-
   const renderedAlsoKnownAs = _.map(person.also_known_as, (aka) => {
     return aka && <p key={uuidv4()}>{aka}</p>;
   });
@@ -84,6 +77,7 @@ const PeopleDetails = ({ url }) => {
       movie &&
       idx < 9 && (
         <div key={uuidv4()}>
+          <Meta title={person.name} />
           <KnownForContainer onClick={onclick}>
             <ImageKnownFor
               src={

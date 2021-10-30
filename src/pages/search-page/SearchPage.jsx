@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   SearchContainer,
   CardContainer,
@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
 import { IMG_API, SEARCH_API } from "../../constant";
 import { useHistory } from "react-router-dom";
-import { seo, text_truncate } from "../../utils";
+import { Meta, text_truncate } from "../../utils";
 import _ from "lodash";
 
 const SearchPage = () => {
@@ -21,20 +21,13 @@ const SearchPage = () => {
 
   const results = useSearch(SEARCH_API, termId);
 
-  useEffect(() => {
-    seo({
-      title: termId + " -_- Sit Watch",
-      metaDescription: "With some meta description",
-    });
-  });
-
   return (
     <SearchContainer>
+      <Meta title={termId} />
       <div className="container">
         <GridSearch>
           {results.map((result) => {
             const KnownFor = _.map(result.known_for, "original_title").join();
-
             return (
               <CardContainer
                 key={result.id}

@@ -1,8 +1,10 @@
+import { Helmet } from "react-helmet";
+
 export const text_truncate = (str, length, ending) => {
-  if (length == null) {
+  if (length === null) {
     length = 100;
   }
-  if (ending == null) {
+  if (ending === null) {
     ending = "...";
   }
   if (str.length > length) {
@@ -12,12 +14,16 @@ export const text_truncate = (str, length, ending) => {
   }
 };
 
-export function seo(data = {}) {
-  data.title = data.title || "Default title";
-  data.metaDescription = data.metaDescription || "Default description";
+export const Meta = ({ title, description, keywords }) => {
+  return (
+    <Helmet>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+    </Helmet>
+  );
+};
 
-  document.title = data.title;
-  document
-    .querySelector('meta[name="description"]')
-    .setAttribute("content", data.metaDescription);
-}
+Meta.defaultProps = {
+  title: "Sit Watch | Find your favorit movies and tv shows",
+};

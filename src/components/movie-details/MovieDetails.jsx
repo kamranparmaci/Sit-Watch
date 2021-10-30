@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import _ from "lodash";
 import $ from "jquery";
@@ -53,7 +53,7 @@ import {
   BackgroundMovieDetails,
   NetworksLogo,
 } from "./MovieDetailsStyles";
-import { seo, text_truncate } from "../../utils";
+import { Meta, text_truncate } from "../../utils";
 import { usePalette } from "react-palette";
 
 const MovieDetails = ({ url }) => {
@@ -99,14 +99,6 @@ const MovieDetails = ({ url }) => {
   let time = runtime ? runtime : episodRunTime;
   let hours = Math.floor(time / 60);
   let minutes = time % 60;
-
-  // Set the dynamic title using seo function
-  useEffect(() => {
-    seo({
-      title: title ? title + " -_- Sit Watch" : name + " -_- Sit Watch",
-      metaDescription: "With some meta description",
-    });
-  });
 
   // Get the genres name and link them into own relevant page
   const genre = _.map(genres, "name");
@@ -239,6 +231,7 @@ const MovieDetails = ({ url }) => {
 
   return (
     <BackgroundMovieDetails color={data.darkVibrant}>
+      <Meta title={title} />
       {width <= 1024 && (
         <>
           <BackdropPathImageMob

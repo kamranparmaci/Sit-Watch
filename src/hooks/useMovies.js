@@ -17,11 +17,9 @@ const useMovies = (url, page) => {
           },
         });
 
-        movie.status(403)
-          ? setData(null)
-          : setData((prev) => {
-              return [...prev, ...movie.data.results];
-            });
+        setData((prev) => {
+          return [...prev, ...movie.data.results];
+        });
         loadingContext.done();
       };
       getSearch();

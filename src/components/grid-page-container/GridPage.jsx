@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import useMovies from "../../hooks/useMovies";
 import Card from "../card/Card";
 import { v4 as uuidv4 } from "uuid";
-import { seo } from "../../utils";
+import { Meta } from "../../utils";
 
 const GridPage = ({ people, url, title }) => {
   const [pageNum, setPageNum] = useState(1);
@@ -17,13 +17,6 @@ const GridPage = ({ people, url, title }) => {
 
   const movies = useMovies(url, pageNum);
   const history = useHistory();
-
-  useEffect(() => {
-    seo({
-      title: title + " -_- Sit Watch",
-      metaDescription: "With some meta description",
-    });
-  });
 
   const scrollTopBtn = () => {
     return pageY > 100 ? (
@@ -75,6 +68,7 @@ const GridPage = ({ people, url, title }) => {
 
   return (
     <GridBackground people={people}>
+      <Meta title={title} />
       <div className="container">
         <FeaturedH1>{title}</FeaturedH1>
         {people && (
